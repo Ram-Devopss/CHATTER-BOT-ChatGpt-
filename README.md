@@ -1,6 +1,9 @@
 # CHATTER-BOT-ChatGpt-
 
 
+#this Project madeup Of Django Python
+
+
 🎉 Chatterbox is a cutting-edge chat application designed to provide an intelligent and seamless user experience by leveraging the power of the ChatGPT API. This application is crafted to cater to modern communication needs, offering both security and convenience. Below are the key features and integration highlights:
 
 🌐 ChatGPT-Powered Conversations
