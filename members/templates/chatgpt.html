@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ChatGPT</title>
+</head>
+<body>
+    <h1>ChatGPT</h1>
+    <form method="post" action="">
+        {% csrf_token %}
+        <label for="prompt">Enter your prompt:</label><br>
+        <textarea id="prompt" name="prompt" rows="4" cols="50"></textarea><br>
+        <input type="submit" value="Submit">
+    </form>
+    {% if response %}
+        <h2>AI's Response:</h2>
+        <p>{{ response }}</p>
+    {% endif %}
+</body>
+</html>

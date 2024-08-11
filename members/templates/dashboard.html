@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A Chatting Assistant</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <style>
+        body {
+            background-color: #f8f9fa;
+            color: #343a40;
+            font-family: Arial, sans-serif;
+            padding-top: 50px; 
+            background-image: url("https://www.shutterstock.com/image-vector/chat-bot-logo-design-concept-600nw-1938811039.jpg");
+            background-repeat: no-repeat;
+         
+            background-size: cover;
+            image-rendering: optimizeQuality;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            color: black;
+            background-color: white;
+            border-radius: 10%;
+            box-shadow: 0px 10px 10px gray;
+            padding: 10%;
+            height: fit-content;
+            width: fit-content;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        #detect {
+            font-weight: 700;
+            border: 2px solid #28a745;
+            border-radius: 20px;
+            padding: 10px 20px;
+            background-color: #28a745;
+            color: #fff;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: block; /* Ensure button takes up full width */
+            margin-top: 20px; /* Add some space between button and inputs */
+        }
+
+        #detect:hover {
+            background-color: #218838;
+        }
+
+        .center-link {
+            text-align: center;
+            margin-top: 30px;
+        }
+
+        .center-link a {
+            color: #007bff;
+            text-decoration: none;
+            margin: 0 10px;
+        }
+
+        .center-link a:hover {
+            text-decoration: underline;
+        }
+
+        @keyframes cursor {
+            0% {
+              border-right: 2px solid black;
+            }
+            50% {
+              border-right: 2px solid transparent;
+            }
+          }
+          
+          .cursor {
+            display: inline-block;
+            border-right: 2px solid black;
+            animation: cursor 0.5s infinite;
+          }
+          
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="text-center mb-4">A PowerFull Chatting Robot</h1>
+        <h5 class="text-center text-muted">This Bot will assist you. Feel free to ask any questions!</h5>
+
+        <form id="otp-form" action="detect" method="POST">
+            {% csrf_token %}
+            <div class="form-group">
+               
+                <input name="texts" type="text" class="form-control" id="texts" required placeholder="Type Here!">
+            </div>
+           
+            <button type="submit" class="btn btn-danger" id="detect">Enter</button>
+        </form>
+
+        <div class="center-link">
+            <a href="#" class="text-muted">Privacy Policy</a>
+            <span class="mx-2 text-muted">|</span>
+            <a href="#" class="text-muted">Terms of Service</a>
+        </div>
+
+        <h3 style="color:rgba(17, 0, 252, 0.849)" class="mt-5">Response: <span id="typed-text"></span><span class="cursor"></span></h3>
+
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script>
+        // Text to be typed
+        var text = "{{prompt}}"
+        // Delay between typing each character (in milliseconds)
+        var typingSpeed = 50;
+        // Get the span element where the text will be typed
+        var typedTextSpan = document.getElementById('typed-text');
+        
+        // Function to display typing effect
+        function typeWriter(text, i, cb) {
+          if (i < text.length) {
+            typedTextSpan.innerHTML += text.charAt(i);
+            i++;
+            setTimeout(function() {
+              typeWriter(text, i, cb)
+            }, typingSpeed);
+          } else {
+            cb();
+          }
+        }
+        
+        // Start typing effect
+        typeWriter(text, 0, function() {
+          // Typing effect finished, remove cursor
+          document.querySelector('.cursor').style.display = 'none';
+        });
+        </script>
+</body>
+
+</html>
